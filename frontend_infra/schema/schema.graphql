@@ -1,0 +1,35 @@
+input CreatePostInput {
+  userId: String!
+  title: String
+  content: String
+  toUserId: String
+}
+
+type Post {
+  id: ID!
+  userId: String!
+  title: String
+  content: String
+  toUserId: String
+}
+
+type Mutation {
+  createPost(input: CreatePostInput!): Post
+}
+type ListPostsByUserIdResponse {
+  posts: [Post]
+  nextToken: String
+}
+input ListPostsByUserIdInput {
+  userId: String!
+  limit: Int
+  nextToken: String
+}
+type Subscription {
+  onCreatePost(toUserId: String!): Post
+  @aws_subscribe(mutations: ["createPost"])
+}
+type Query {
+  getPost: [Post]
+  listPostsByUserId(input: ListPostsByUserIdInput!): ListPostsByUserIdResponse
+}

@@ -1,0 +1,12 @@
+cloud-architecture-diagram
+
+// Define groups and nodes
+AppSync [icon: aws-appsync]
+DynamoDB [icon: aws-dynamodb]
+Lambda [icon: aws-lambda]
+S3(Static Web Site) [icon: aws-simple-storage-service]
+User [icon: user]
+
+// Define connections
+User > AppSync > Lambda > DynamoDB
+User > S3(Static Web Site)
